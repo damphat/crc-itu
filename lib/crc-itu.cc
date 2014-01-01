@@ -47,31 +47,29 @@ U16 GetCrc16(const U8* pData, int nLength)
 }
 
 Handle<Value> crc16(const Arguments& args) {
-  HandleScope scope;
+	HandleScope scope;
 
-  	Local<Value> ret = Local<Value>::New(Undefined());
+	Local<Value> ret = Local<Value>::New(Undefined());
 
-  	if(args[0]->IsObject()) {
+	if(args[0]->IsObject()) {
 		Local<Object> bufferObj    = args[0]->ToObject();
-		U8*         bufferData   = (U8*)Buffer::Data(bufferObj);
-		int        bufferLength = Buffer::Length(bufferObj);
+		U8* bufferData   = (U8*)Buffer::Data(bufferObj);
+		int bufferLength = Buffer::Length(bufferObj);
 
 		if(bufferLength >= 0) {
 			ret = Number::New(GetCrc16(bufferData, bufferLength));			
 		} else {
-	  		return ThrowException(Exception::TypeError(String::New("Wrong param! syntax: crc16(buffer)")));
+			return ThrowException(Exception::TypeError(String::New("Wrong param! syntax: crc16(buffer)")));
 		}
+	} else {
+		return ThrowException(Exception::TypeError(String::New("Wrong param! syntax: crc16(buffer)")));
+	}
 
-  	} else {
-	  	return ThrowException(Exception::TypeError(String::New("Wrong param! syntax: crc16(buffer)")));
-  	}
- 
-  return scope.Close(ret);
+	return scope.Close(ret);
 }
 
 void init(Handle<Object> exports) {
-  exports->Set(String::NewSymbol("crc16"),
-      FunctionTemplate::New(crc16)->GetFunction());
+	exports->Set(String::NewSymbol("crc16"), FunctionTemplate::New(crc16)->GetFunction());
 }
 
 NODE_MODULE(crc_itu, init)
