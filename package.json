@@ -1,0 +1,24 @@
+{
+  "name": "crc-itu",
+  "version": "0.0.0",
+  "description": "crc-itu 16 bits",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js",
+    "install": "node-gyp rebuild"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/damphat/crc-itu.git"
+  },
+  "keywords": [
+    "crc",
+    "itu"
+  ],
+  "author": "damphat@gmail.com",
+  "gypfile": true,
+  "bugs": {
+    "url": "https://github.com/damphat/crc-itu/issues"
+  },
+  "homepage": "https://github.com/damphat/crc-itu"
+}
