@@ -1,6 +1,6 @@
 {
   "name": "crc-itu",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "crc-itu 16 bits",
   "main": "index.js",
   "scripts": {
