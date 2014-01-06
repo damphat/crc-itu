@@ -4,7 +4,7 @@ crc-itu
 Install:
 
 ```
-npm install git://github.com/damphat/crc-itu.git
+npm install crc-itu
 ```
 
 Usage:
