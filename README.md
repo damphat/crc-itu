@@ -1,4 +1,4 @@
-crc-itu
+crc-itu [![Build Status](https://travis-ci.org/damphat/crc-itu.png?branch=master)](https://travis-ci.org/damphat/crc-itu)
 =======
 
 Install:
