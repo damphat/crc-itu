@@ -35,7 +35,7 @@ static const U16 crctab16 [] = {
 	0X2C6A, 0X1EF1, 0X0F78
 };
 
-U16 GetCrc16(const U8* pData, int nLength)
+U16 GetCrc16(const U8* pData, size_t nLength)
 {
 	U16 fcs = 0xffff; // initialization
 	while(nLength>0){
@@ -46,30 +46,27 @@ U16 GetCrc16(const U8* pData, int nLength)
 	return ~fcs; // negated
 }
 
-Handle<Value> crc16(const Arguments& args) {
-	HandleScope scope;
-
-	Local<Value> ret = Local<Value>::New(Undefined());
+void crc16(const v8::FunctionCallbackInfo<v8::Value> &args) {
+	Isolate* isolate = args.GetIsolate();
 
 	if(args[0]->IsObject()) {
 		Local<Object> bufferObj    = args[0]->ToObject();
 		U8* bufferData   = (U8*)Buffer::Data(bufferObj);
-		int bufferLength = Buffer::Length(bufferObj);
+		size_t bufferLength = Buffer::Length(bufferObj);
 
 		if(bufferLength >= 0) {
-			ret = Number::New(GetCrc16(bufferData, bufferLength));			
+			args.GetReturnValue().Set(GetCrc16(bufferData, bufferLength));
+			
 		} else {
-			return ThrowException(Exception::TypeError(String::New("Wrong param! syntax: crc16(buffer)")));
+			isolate->ThrowException(Exception::TypeError(String::NewFromUtf8(isolate, "Wrong param! syntax: crc16(buffer)")));
 		}
 	} else {
-		return ThrowException(Exception::TypeError(String::New("Wrong param! syntax: crc16(buffer)")));
+		isolate->ThrowException(Exception::TypeError(String::NewFromUtf8(isolate, "Wrong param! syntax: crc16(buffer)")));
 	}
-
-	return scope.Close(ret);
 }
 
 void init(Handle<Object> exports) {
-	exports->Set(String::NewSymbol("crc16"), FunctionTemplate::New(crc16)->GetFunction());
+  NODE_SET_METHOD(exports, "crc16", crc16);
 }
 
 NODE_MODULE(crc_itu, init)
