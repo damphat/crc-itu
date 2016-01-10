@@ -46,7 +46,7 @@ U16 GetCrc16(const U8* pData, size_t nLength)
 	return ~fcs; // negated
 }
 
-void crc16(const v8::FunctionCallbackInfo<v8::Value> &args) {
+void crc16(const FunctionCallbackInfo<Value> &args) {
 	Isolate* isolate = args.GetIsolate();
 
 	if(args[0]->IsObject()) {
