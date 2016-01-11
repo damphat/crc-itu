@@ -1,6 +1,10 @@
 crc-itu [![Build Status](https://travis-ci.org/damphat/crc-itu.png?branch=master)](https://travis-ci.org/damphat/crc-itu)
 =======
 
+Requirement:
+- Node 0.11+
+- Compiler: g++ 4.8 or later
+
 Install:
 
 ```
