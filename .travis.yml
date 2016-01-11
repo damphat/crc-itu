@@ -14,5 +14,3 @@
      packages:
        - gcc-4.8
        - g++-4.8
- before_install:
-   - "test $TRAVIS_NODE_VERSION != '0.8' || npm install -g npm@1.2.8000"
